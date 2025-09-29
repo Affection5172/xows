@@ -218,7 +218,8 @@ function xows_wrtc_new(icelist, onsdesc, ontrack, onstate, onerror, param)
   const iceservers = [];
 
   for(let i = 0; i < icelist.length; ++i) {
-    const ice = {urls:icelist[i].type+":"+icelist[i].host};
+    const ice = {urls:icelist[i].type+":"+icelist[i].host+":"+icelist[i].port};
+    xows_log(2,"xows_wrtc_new","using ICE",ice.urls);
     // Check whether we need to generate credentials
     if(icelist[i].secret) {
       const creds = xows_wrtc_gen_credential(xows_cli_self.addr, icelist[i].secret);
